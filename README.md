@@ -1,5 +1,5 @@
 # HookedRDP
-This dll is used to hook Windows' RDP client to snag information about the credentials and the server being connected to.  
+This dll is used to hook Windows' RDP client to snag information about the credentials and the server being connected to. You can check it out by reading their blog to get an idea of what exactly it does:  https://www.mdsec.co.uk/2019/11/rdpthief-extracting-clear-text-credentials-from-remote-desktop-clients/. I'm not cool enough to use Cobalt Strike though..
 
 This is a post exploitation type deal and you will need to inject the DLL somehow. There are numerous ways of doing so, and that will be left up to you to do. For now, this just uses the regular ol' MessageBox just as a PoC. The goodies I have done are not on here :)
 
