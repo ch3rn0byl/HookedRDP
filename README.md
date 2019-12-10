@@ -7,5 +7,5 @@ I had some issues with compiling their code and what not so kind of refactored a
 
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/what.png)
 
-Implenting the encryption thingies
+Implenting the encryption thingies    
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/Capture1.PNG)
