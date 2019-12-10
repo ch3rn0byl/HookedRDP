@@ -77,7 +77,6 @@ public:
 		}
 
 		// Calculates the size of the buffer to hold the KeyObject
-		//status = BCryptGetProperty(hAlgorithm, BCRYPT_OBJECT_LENGTH, &cbKeyObject, sizeof(DWORD), &cbData, 0);
 		status = BCryptGetProperty(hAlgorithm, BCRYPT_OBJECT_LENGTH, reinterpret_cast<PBYTE>(&cbKeyObject), sizeof(DWORD), &cbData, 0);
 		if (!NT_SUCCESS(status))
 		{
