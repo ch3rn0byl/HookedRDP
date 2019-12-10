@@ -6,3 +6,4 @@ This is a post exploitation type deal and you will need to inject the DLL someho
 I had some issues with compiling their code and what not so kind of refactored a little code and added a thing or two to make it work with Win7 and Win10. It's compiled using Visual Studio 2019   
 
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/what.png)
+![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/Capture1.PNG)
