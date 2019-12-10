@@ -18,7 +18,6 @@
 
 std::string ConvertToString(const std::wstring& DLLName)
 {
-	//size_t len = WideCharToMultiByte(CP_ACP, 0, DLLName.c_str(), DLLName.size() + 1, 0, 0, 0, 0);
 	int len = WideCharToMultiByte(CP_ACP, 0, DLLName.c_str(), static_cast<int>(DLLName.size() + 1), 0, 0, 0, 0);
 	std::string result(len, '\0');
 
