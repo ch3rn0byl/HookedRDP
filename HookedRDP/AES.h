@@ -1,6 +1,5 @@
 #pragma once
 #include <Windows.h>
-//#include <ntstatus.h>
 #include <bcrypt.h>
 
 #include "nthelpers.h"
@@ -24,9 +23,7 @@ class AES
 private:
 	BCRYPT_ALG_HANDLE hAlgorithm = NULL;
 	BCRYPT_KEY_HANDLE hKey = NULL;
-	NTSTATUS status = STATUS_UNSUCCESSFUL; // 0xC0000001
-	//BYTE testes;
-	//std::string testing;
+	NTSTATUS status = STATUS_UNSUCCESSFUL; 
 protected:
 	DWORD cbKeyObject = 0;
 	DWORD cbData = 0;
@@ -100,7 +97,7 @@ public:
 		// Determine whether the cbBlockLen is not longer than the IV length
 		if (cbBlockLen > sizeof(rgbIV))
 		{
-			status = STATUS_INVALID_BUFFER_SIZE; // 0xc0000206
+			status = STATUS_INVALID_BUFFER_SIZE; 
 			return false;
 		}
 
