@@ -1,20 +1,61 @@
-// DecryptClient.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include <Windows.h>
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
 
-int main()
+#include "Base64.h"
+#include "AES.h"
+
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello World!\n";
+	std::string lpFileName;
+	std::string EncryptedString;
+
+	std::vector<std::string> Treasure;
+
+	std::cout << "\n\t--==[[ Fancy Name Decrypter Thingy ]]==--\n" << std::endl;
+	if (argc != 2)
+	{
+		std::cerr << "[!] Usage: " << argv[0] << " EncryptedFile" << std::endl;
+		return EXIT_FAILURE;
+	}
+	else
+	{
+		lpFileName = argv[1];
+	}
+
+	std::ifstream L00T(lpFileName, std::ios::binary);
+	if (L00T.is_open())
+	{
+		while (std::getline(L00T, EncryptedString))
+		{
+			Treasure.push_back(EncryptedString);
+		}
+	}
+	else
+	{
+		std::cerr << "[!] Unable to open " << lpFileName << "!" << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	// Start initializing AES and what not
+	AES* DecryptMe = new AES();
+	if (!DecryptMe->initialize())
+	{
+		std::cerr << "[!] Unable to be initialized!" << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	std::cout << "[+] Reading " << lpFileName << "..." << std::endl;
+	for (auto i : Treasure)
+	{
+		auto decoded = base64::decode(i);
+
+		DecryptMe->CNGDecrypt(i);
+		std::cout << "[+] Loot: " << DecryptMe->GetDecryptedString() << std::endl;
+	}
+	std::cout << "[+] Done!" << std::endl;
+
+	return EXIT_SUCCESS;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

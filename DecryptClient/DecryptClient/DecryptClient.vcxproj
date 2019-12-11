@@ -149,6 +149,11 @@
   <ItemGroup>
     <ClCompile Include="DecryptClient.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AES.h" />
+    <ClInclude Include="Base64.h" />
+    <ClInclude Include="nthelpers.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
