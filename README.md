@@ -7,9 +7,10 @@ I had some issues with compiling their code and what not so kind of refactored a
 
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/what.png)
 
-The encrypted text coming along   
+Update: The encrypted text coming along   
 
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/Capture1.PNG)    
 
 Update: A client has been made to decrypt the output of the loot    
+
 ![thingy](https://github.com/ch3rn0byl/HookedRDP/blob/master/Image/dec.PNG)
