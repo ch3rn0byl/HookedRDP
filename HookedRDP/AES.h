@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <bcrypt.h>
 
+#include <vector>
+
 #include "nthelpers.h"
 
 #pragma comment(lib, "Bcrypt.lib")
@@ -37,6 +39,8 @@ protected:
 	PBYTE pbBlob = NULL;
 	PBYTE pbPlainText = NULL;
 	PBYTE pbCipherText = NULL;
+
+	std::string sCipherText;
 public:
 	AES(){}
 	~AES()
@@ -210,6 +214,15 @@ public:
 	PUCHAR GetEncryptedString()
 	{
 		return pbCipherText;
+	}
+
+	std::string GetEncodedString()
+	{
+		std::string result(reinterpret_cast<const char*>(pbCipherText));
+
+		std::vector<base64::byte> data(std::begin(result), std::end(result));
+		auto sCipherText = base64::encode(data);
+		return sCipherText;
 	}
 
 	PUCHAR GetDecryptedString()
